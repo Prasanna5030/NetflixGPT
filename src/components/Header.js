@@ -36,14 +36,13 @@ const unsubscribe =    onAuthStateChanged(auth, (user) => {
         navigate("/");
       }
     });
-
-    
      return ()=>unsubscribe();
-  } );
+  }, []);
    
 
   const handleGpt=()=>{
-    dispatch(toggleGptSearchView())
+    //toggle GPT search
+    dispatch(toggleGptSearchView());
   }
 
   const handleClick = () => {
