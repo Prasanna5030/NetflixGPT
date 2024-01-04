@@ -1,14 +1,11 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
-import { SUPPORTED_LANGUAGES, login_icon, netflix_logo } from '../utils/constants';
-import Gptsearch from './Gptsearch';
-import MainContainer from './MainContainer';
-import SecondaryContainer from './SecondaryContainer';
+import { SUPPORTED_LANGUAGES, netflix_logo } from '../utils/constants';
 import { toggleGptSearchView } from '../utils/gptSlice';
 import { changeLanguage } from '../utils/configSlice';
 // import { Link } from 'react-router-dom';
@@ -42,7 +39,7 @@ const unsubscribe =    onAuthStateChanged(auth, (user) => {
 
     
      return ()=>unsubscribe();
-  } , []);
+  } );
    
 
   const handleGpt=()=>{
@@ -66,10 +63,11 @@ const unsubscribe =    onAuthStateChanged(auth, (user) => {
   
   return (
     <>
-      <div className="absolute w-screen bg-gradient-to-b from-black px-8 py-2 z-10 flex justify-between">
+      <div className="absolute w-screen bg-gradient-to-b from-black px-0 md:px-8 py-2 z-10 flex flex-col md:flex-row justify-between">
         <img
-          className=" w-44" src={netflix_logo} alt="logoimage" />
-        <div className="flex">
+          className=" w-44 mx-auto md:mx-0" src={netflix_logo} alt="logoimage" />
+        <div className="flex flex-row justify-end ">
+        
           {user && <>
           { showGptSearch && <select className="w-24 h-10 m-4 p-2 bg-gray-700 text-white" onChange={handleLanguageChange}>
             {
@@ -78,9 +76,9 @@ const unsubscribe =    onAuthStateChanged(auth, (user) => {
             
             </select> }
 
-            <button onClick={handleGpt} className="bg-red-500 p-2 m-2 px-4 text-xl text-white rounded-lg">{showGptSearch ? "Go Home" : "GPT Search"}</button> 
-          <button className='m-2 bg-red-500 p-2 m-2 px-4 text-xl text-white rounded-lg' onClick={handleClick}>Signout</button></>}
-          <img className=" w-14 h-14 m-2 rounded-lg" src={user?.photoURL} alt="usericon" />
+            <button onClick={handleGpt} className=" ml:0 md:mr-0  bg-purple-500 p-0 md:p-2 m-2 md:px-4 text-xl text-white rounded-lg">{showGptSearch ? "Home" : "GPT Search"}</button> 
+            <button className=' bg-red-500 p-0 md:p-2 m-2 md:px-4 text-xl text-white rounded-lg' onClick={handleClick}>Signout</button></>}
+       {user &&  <img className="w-14 h-14 m-2 rounded-lg" src={user?.photoURL} alt="usericon" /> }
           </div>
       </div>
 

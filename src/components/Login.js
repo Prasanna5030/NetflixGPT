@@ -47,7 +47,7 @@ const Login = () => {
                       }).then(() => {
 
                         // Profile updated!
-                        const {uid, name, displayName,photoURL}=auth.currentUser;
+                        const {uid, name, displayName}=auth.currentUser;
                         dispatch(addUser({
                             uid:uid,
                             name:name,
@@ -76,6 +76,7 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
+                    console.log(user);
               
                 })
                 .catch((error) => {
@@ -90,19 +91,19 @@ const Login = () => {
         <>
             <Header />
             <div className="absolute">
-                <img src={bg_img} alt="backgroundimage" className='h-max' />
+                <img src={bg_img} alt="backgroundimage" className='h-screen object-cover md:h-max' />
             </div>
 
-            <div className="login-form absolute w-1/3 mx-auto right-0 left-0 my-36 bg-black bg-opacity-80  h-fit">
-                <form onSubmit={(e) => e.preventDefault()} className="mx-10 my-16 text-white">
+            <div className="w-full login-form absolute md:w-1/3 mx-auto right-0 left-0 my-28 md:my-36 bg-black bg-opacity-80  h-fit md:h-screen">
+                <form onSubmit={(e) => e.preventDefault()} className="mx-10 my-4 md:my-16 text-white">
                     <h3 className='font-bold text-3xl px-3 mb-2 '>{isSignInForm ? "Sign In" : "Sign Up"}</h3>
-                    {!isSignInForm && <input type='text' name="name" placeholder=" enter your name" value={name} onChange={(e) => setName(e.target.value)} className="m-2 p-4  w-full rounded-lg bg-gray-700 ml-2" />}
+                    {!isSignInForm && <input type='text' name="name" placeholder=" enter your name" value={name} onChange={(e) => setName(e.target.value)} className="m-2 p-2 md:p-4 w-3/4 md:w-full rounded-lg bg-gray-700 ml-2" />}
 
-                    <input type='text' ref={mail} name="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder=" Email or Phone" className="m-2 p-4  w-full rounded-lg bg-gray-700 ml-2" />
-                    <input type='password' ref={Password} name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="enter Password" className="m-2 p-4 w-full rounded-lg bg-gray-700 ml-2" />
+                    <input type='text' ref={mail} name="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder=" Email or Phone" className="m-2 p-2 md:p-4 w-3/4 md:w-full rounded-lg bg-gray-700 ml-2" />
+                    <input type='password' ref={Password} name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="enter Password" className="m-2 p-2 md:p-4 w-3/4 md:w-full rounded-lg bg-gray-700 ml-2" />
                     <p className="text-red-500 font-medium m-2 ">{errormessage}</p>
 
-                    <button className='p-4 m-2 bg-red-600 w-full rounded-lg ml-2' onClick={handleClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
+                    <button className='block p-2 md:p-4 m-2 bg-red-600 w-3/4 md:w-full rounded-lg ml-2' onClick={handleClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
                     <input type="checkbox" name="remember me" className='m-2' /><p className="inline-block">Remember me</p>
                     <p className="m-2 p-2 underline cursor-pointer" onClick={togglesignInForm}>{isSignInForm ? "New to netfilx? Signup Now" : " Already Registered ? Sign In now..."}</p>
                 </form>

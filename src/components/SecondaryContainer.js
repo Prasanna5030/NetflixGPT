@@ -11,13 +11,10 @@ const SecondaryContainer = () => {
 
 
 
-    console.log('====================================');
-    console.log(movies); // movies list array
-    console.log('====================================');
-
+   
     return movies && (
         <div className="bg-black">
-            <div className="relative z-20 -mt-52">
+            <div className="relative z-20 -mt-20 md:-mt-52">
 
                 <Movielist title={"Now Playing"} movies={movies} />
 

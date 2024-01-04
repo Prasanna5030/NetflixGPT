@@ -4,12 +4,17 @@ import Inputsearch from './Inputsearch'
 import GptMovieSuggestions from './GptMovieSuggestions'
 const Gptsearch = () => {
   return (
-    <div className=''>
-    <img src={bg_img} alt="bg-img" className="h-max fixed -z-10 brightness-50 "/>
+    <>
+    <img src={bg_img} alt="bg-img" className="h-screen object-cover absolute -z-10 brightness-50  md:hidden"/>
+
+    <div className='pt-[30%] md:pt-0'>
+    <img src={bg_img} alt="bg-img" className="h-max md:fixed -z-10 brightness-50 hidden md:flex "/>
+
 
     <Inputsearch />
     <GptMovieSuggestions />
     </div>
+  </>
   )
 }
 
